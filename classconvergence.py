@@ -22,3 +22,13 @@ def count_particles(particles):
     particle_counts = particles[['rlnClassNumber']].value_counts()
     fractions_of_total = particles[['rlnClassNumber']].value_counts(normalize=True) * 100
     return pd.DataFrame({'count': particle_counts, 'fraction': fractions_of_total})
+
+def classconvergence_particles(data_star_files):
+    """Build a DataFrame of class populations as a function of iteration."""
+    counts = [ count_particles(df['particles']) for df in data_star_files ]
+    for (count, it) in zip(counts, range(0, len(counts))):
+        count['iteration'] = it
+    table = pd.concat(counts)
+    table.reset_index(inplace=True)
+    table.set_index('iteration', inplace=True)
+    return table
