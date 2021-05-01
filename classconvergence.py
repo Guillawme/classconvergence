@@ -3,6 +3,7 @@ import sys
 import starfile as star
 import pandas as pd
 import matplotlib.pyplot as plt
+import click
 
 # Building blocks
 
@@ -51,3 +52,22 @@ def plot_class_distributions(table, series, directory):
     ax.set_title(f'Class distribution of {directory}')
     fig.tight_layout()
     return fig
+
+# Command-line tool made from the buidling blocks
+
+@click.command(context_settings=dict(help_option_names=['-h', '--help']))
+@click.argument('jobdir', metavar='<job_directory>')
+@click.option('-c', '--count', 'series', flag_value='count', default=True, help='Plot particle counts per class (default, same effect as not passing any option).')
+@click.option('-p', '--percent', 'series', flag_value='fraction', help='Plot percentages of particles per class (default: counts).')
+@click.option('-o', '--output', 'output_file', default='', type=str, help='File name to save the plot (optional: with no file name, simply display the plot on screen without saving it; recommended file formats: .png, .pdf, .svg or any format supported by matplotlib).')
+def cli(jobdir, series, output_file):
+    """Plot the class distribution as a function of iteration from a Class2D or Class3D job from RELION."""
+    files = load_star_files(jobdir, "data.star")
+    counts = classconvergence_particles(files)
+    plot = plot_class_distributions(counts, series, jobdir)
+    if output_file:
+        plot.figsize = (11.80, 8.85)
+        plot.dpi = 300
+        plt.savefig(output_file)
+    else:
+        plt.show()
