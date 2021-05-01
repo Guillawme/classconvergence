@@ -8,7 +8,7 @@ with open(path.join(here, 'README.md'), encoding = 'utf-8') as f:
 
 setup(
     name = 'classconvergence',
-    version = '1.0',
+    version = '1.1',
 
     description = 'Plot the class distribution as a function of iteration from a Class2D or Class3D job from RELION',
     long_description = readme,
