@@ -1,6 +1,6 @@
 # classconvergence
 
-[![DOI](https://zenodo.org/badge/DOI/)](https://doi.org/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4732050.svg)](https://doi.org/10.5281/zenodo.4732050)
 
 Plot the class distribution as a function of iteration from a Class2D or Class3D
 job from RELION.
