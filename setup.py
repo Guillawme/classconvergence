@@ -8,7 +8,7 @@ with open(path.join(here, 'README.md'), encoding = 'utf-8') as f:
 
 setup(
     name = 'classconvergence',
-    version = '1.1',
+    version = '1.2',
 
     description = 'Plot the class distribution as a function of iteration from a Class2D or Class3D job from RELION',
     long_description = readme,
@@ -34,11 +34,11 @@ setup(
 
     py_modules = ["classconvergence"],
 
-    python_requires = '>=3.9.1',
+    python_requires = '>=3.9.7',
     install_requires = [
-        'click>=7.1.2',
-        'matplotlib>=3.3.2',
-        'starfile>=0.4.4'
+        'click>=8.0.3',
+        'matplotlib>=3.4.3',
+        'starfile>=0.4.9'
     ],
 
     entry_points = {
