@@ -16,7 +16,7 @@ def load_star_files(directory, pattern):
         files = os.listdir(directory)
         files.sort()
         full_files = [ directory + '/' + file for file in files ]
-        dfs = [ star.open(file) for file in full_files if pattern in file ]
+        dfs = [ star.read(file) for file in full_files if pattern in file ]
         if len(dfs) == 0:
             sys.stderr.write(f'No files matching pattern "{pattern}" could be found in "{directory}".')
             sys.exit(1)
